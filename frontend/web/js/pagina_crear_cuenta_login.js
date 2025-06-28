@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = '../assets/login.html';
     });
 
+    document.getElementById('create-account').addEventListener('click', function () {
+        window.location.href = '../assets/create-account.html'
+    })
+
 
     
 });

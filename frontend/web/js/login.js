@@ -10,4 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(contrasenaCorreo.value);
     });
 
+    
+
 });

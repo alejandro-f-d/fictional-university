@@ -1,55 +1,218 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #f0f0f0;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
     margin: 0;
     padding: 20px;
-    font-family: Arial, sans-serif;
-    padding-top: 50px; /*Ponemos esto para en el caso de que haya barra de menú, no se solape con el menú*/
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 50px;
 }
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
 .marco-relieve {
-    padding: 10px;
+    padding: 20px;
     border: 2px solid #ccc;
-    border-radius: 10px;
-    background-color: #f5f5f5;
-    text-align: center; /* centra el texto y la imagen */
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    /* Eliminamos la transformación */
+    transition: box-shadow 0.3s ease; /* Solo mantenemos la transición de sombra */
+}
+
+.marco-relieve:hover {
+    /* Quitamos el movimiento vertical */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 .marco-relieve img {
     margin-top: 15px;
     max-width: 100%;
     height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .recuadro-login {
-    padding: 20px;
+    padding: 30px;
     border: 2px solid rgb(27, 27, 156);
-    border-radius: 10px;
-    background-color: rgb(46, 119, 161);
+    border-radius: 12px;
+    background: linear-gradient(to right, #1a2980, #26d0ce);
     text-align: center;
     color: white;
-    margin: 20px;
+    margin: 20px 0;
+    width: 100%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.recuadro-login h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .contenedor-input {
-    margin: 20px;
-    padding: 15px;
+    margin: 20px auto;
+    padding: 25px;
     border: 1px solid #ddd;
-    border-radius: 8px;
-    max-width: 400px;
+    border-radius: 10px;
+    background-color: white;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
+
+.form-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 16px;
+}
+
 input {
-    padding: 10px;
+    padding: 14px;
     width: 100%;
     box-sizing: border-box;
     border: 2px solid #3498db;
-    border-radius: 4px;
+    border-radius: 8px;
     margin-bottom: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
 }
+
+input:focus {
+    border-color: #2980b9;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+    outline: none;
+}
+
 #mensaje {
     color: #2c3e50;
     font-size: 14px;
+    margin-top: 5px;
+    font-weight: 500;
 }
 
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: white;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    padding: 14px 50px 14px 15px;
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='12' height='8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23333' d='M6 8L0 0h12L6 8z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    border-color: #2980b9;
+    outline: none;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+}
+
+.btn {
+    background: linear-gradient(to right, #1a2980, #26d0ce);
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background: linear-gradient(to right, #15225e, #1fa7a6);
+    /* Eliminamos el movimiento vertical */
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    /* También eliminamos el movimiento al hacer clic */
+    transform: none;
+}
+
+.footer {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .recuadro-login {
+        padding: 25px 15px;
+    }
+    
+    .recuadro-login h2 {
+        font-size: 24px;
+    }
+    
+    .contenedor-input {
+        padding: 20px;
+    }
+    
+    .marco-relieve {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 15px;
+        padding-top: 40px;
+    }
+    
+    .recuadro-login {
+        margin: 10px 0;
+    }
+    
+    input, select {
+        padding: 12px;
+        font-size: 15px;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+}
