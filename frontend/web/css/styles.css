@@ -1,0 +1,55 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    padding-top: 50px; /*Ponemos esto para en el caso de que haya barra de menú, no se solape con el menú*/
+}
+.marco-relieve {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    text-align: center; /* centra el texto y la imagen */
+}
+
+.marco-relieve img {
+    margin-top: 15px;
+    max-width: 100%;
+    height: auto;
+}
+
+.recuadro-login {
+    padding: 20px;
+    border: 2px solid rgb(27, 27, 156);
+    border-radius: 10px;
+    background-color: rgb(46, 119, 161);
+    text-align: center;
+    color: white;
+    margin: 20px;
+}
+
+.contenedor-input {
+    margin: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 400px;
+}
+input {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid #3498db;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+#mensaje {
+    color: #2c3e50;
+    font-size: 14px;
+}
+
