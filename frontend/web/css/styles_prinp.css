@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
     padding-top: 60px; /* espacio para el menú fijo */
     color: #333;
 }
