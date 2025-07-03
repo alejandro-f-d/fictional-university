@@ -1,0 +1,27 @@
+FROM ubuntu:latest
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends sudo python3 python3-pip wget openssh-server git gpg curl htop nano software-properties-common gcc && mkdir /var/run/sshd && apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN mkdir -p /miniconda3 && wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /miniconda3/miniconda.sh && bash /miniconda3/miniconda.sh -b -u -p /miniconda3 && rm /miniconda3/miniconda.sh
+ENV PATH="/miniconda3/bin:${PATH}"
+RUN echo "export PATH=/miniconda3/bin:${PATH}" >> /etc/bash.bashrc
+RUN /miniconda3/bin/conda init bash
+RUN mkdir /web_universidad && chmod 770 /web_universidad
+RUN groupadd -g 2000 web_universidad
+RUN useradd -m -d /web_universidad -s /bin/bash -u 1001 -g web_universidad admin
+RUN echo 'admin:1' | chpasswd
+RUN usermod -aG sudo admin
+RUN chown -R root:web_universidad /web_universidad &&     chmod -R 2775 /web_universidad
+RUN su - admin -c "/miniconda3/bin/conda init bash"
+RUN touch /web_universidad/.bash_profile
+RUN echo 'if [ -f ~/.bashrc ]; then\n    source ~/.bashrc\nfi' >> /web_universidad/.bash_profile
+RUN mkdir /environment_python/
+RUN conda create --prefix /environment_python/env_proyecto python=3.10 -y
+RUN /bin/bash -c "source /miniconda3/etc/profile.d/conda.sh &&             conda activate /environment_python/env_proyecto &&             pip install matplotlib pandas "
+RUN chmod -R a+rwx /environment_python/env_proyecto
+RUN wget http://security.ubuntu.com/ubuntu/pool/universe/n/ncurses/libtinfo5_6.3-2ubuntu0.1_amd64.deb 
+RUN apt install ./libtinfo5_6.3-2ubuntu0.1_amd64.deb
+RUN apt-get update &&     apt-get install -y --no-install-recommends         software-properties-common         apt-utils         wget &&     wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-keyring_1.1-1_all.deb &&     dpkg -i cuda-keyring_1.1-1_all.deb &&     rm cuda-keyring_1.1-1_all.deb &&     apt-get update
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb && dpkg -i cuda-keyring_1.1-1_all.deb && apt-get update && apt-get -y install cuda-toolkit-12-4 
+EXPOSE 22
+RUN sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config && sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config && echo "PermitUserEnvironment yes" >> /etc/ssh/sshd_config
+CMD ["/usr/sbin/sshd", "-D"]

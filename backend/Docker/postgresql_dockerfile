@@ -1,0 +1,4 @@
+# Usa la imagen oficial de PostgreSQL
+FROM postgres:latest
+# Copia tu script SQL al directorio mágico donde PostgreSQL los ejecuta al iniciar por primera vez
+COPY ./postgre_bdd.sql /docker-entrypoint-initdb.d/
