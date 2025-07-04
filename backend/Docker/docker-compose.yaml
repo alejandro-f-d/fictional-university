@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: web
       POSTGRES_DB: schema_web
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_university:/var/lib/postgresql/data
     networks:
       - web_network
 
@@ -20,5 +20,5 @@ networks:
     driver: bridge
 
 volumes:
-  postgres_data:
+  postgres_university:
     driver: local
